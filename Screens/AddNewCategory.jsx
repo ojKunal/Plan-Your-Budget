@@ -1,6 +1,13 @@
 // components/AddCategoryForm.js
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  SafeAreaView,
+} from "react-native";
 
 export default function AddNewCategory({ onSubmit, onCancel }) {
   const [categoryName, setCategoryName] = useState("");
@@ -11,17 +18,22 @@ export default function AddNewCategory({ onSubmit, onCancel }) {
   };
 
   return (
-    <View style={styles.form}>
-      <Text style={styles.label}>Category Name</Text>
-      <TextInput
-        style={styles.input}
-        value={categoryName}
-        onChangeText={setCategoryName}
-        placeholder="Enter category name"
-      />
-      <Button title="Submit" onPress={handleSubmit} />
-      <Button title="Cancel" onPress={onCancel} color="red" />
-    </View>
+    // <View style={styles.form}>
+    //   <Text style={styles.label}>Category Name</Text>
+    //   <TextInput
+    //     style={styles.input}
+    //     value={categoryName}
+    //     onChangeText={setCategoryName}
+    //     placeholder="Enter category name"
+    //   />
+    //   <Button title="Submit" onPress={handleSubmit} />
+    //   <Button title="Cancel" onPress={onCancel} color="red" />
+    // </View>
+    <SafeAreaView>
+      <View className="bg-red-400">
+        <Text>hiii</Text>
+      </View>
+    </SafeAreaView>
   );
 }
 

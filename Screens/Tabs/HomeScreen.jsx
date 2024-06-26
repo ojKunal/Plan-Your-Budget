@@ -1,5 +1,5 @@
 //import liraries
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
@@ -7,6 +7,7 @@ import CircularChart from "../../Components/CircularChart";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import auth from "../../firebaseConfig";
+import { supabase } from "../../Utils/SupabaseConfig";
 
 // create a component
 const HomeScreen = () => {
@@ -15,17 +16,51 @@ const HomeScreen = () => {
   const series = [123, 321, 123, 789, 537];
   const sliceColor = ["#fbd203", "#ffb300", "#ff9100", "#ff6c00", "#ff3c00"];
   const userEmail = auth.currentUser.email;
+
+  useEffect(() => {
+    getCategoryList();
+  });
+  console.log(userEmail);
+  //fetching data from supabase//
+  const getCategoryList = async () => {
+    const { data, error } = await supabase.from("Category").select("*");
+    if (error) {
+      console.error("Error fetching data:", error);
+      return;
+    }
+    console.log("Data:", data);
+  };
+
+  const getUsername = (email) => {
+    return email.split("@")[0];
+  };
+
   return (
     <SafeAreaView className="h-full bg-gray-800">
       <StatusBar style="light" backgroundColor="black" />
       <View className="h-[20%] bg-blue-500 rounded-b-3xl flex-row">
         <View className="flex-row items-center gap-3 ml-3 h-[40%] mt-2">
           <View className="rounded-full bg-[#002117] h-14 w-14 flex-row items-center justify-center">
-            <Text className="text-white text-2xl">{userEmail[0].toUpperCase()}</Text>
+            <Text
+              style={{ fontFamily: "Outfit-Bold" }}
+              className="text-white text-2xl"
+            >
+              {userEmail[0].toUpperCase()}
+            </Text>
           </View>
           <View>
-            <Text className="text-gray-300">Welcome,</Text>
-            <Text className="text-white text-xl">{userEmail}</Text>
+            <Text
+              style={{ fontFamily: "Outfit-Bold" }}
+              className="text-gray-300"
+            >
+              Welcome,
+            </Text>
+            <Text
+              style={{ fontFamily: "Outfit-Medium" }}
+              className="text-white text-xl"
+            >
+              {getUsername(userEmail)}
+            </Text>
           </View>
         </View>
         {/* <View className="bg-white h-[20%]">

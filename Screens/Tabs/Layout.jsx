@@ -10,10 +10,17 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { useFonts } from "expo-font";
 
 const stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
+
 export default function Layout() {
+  const [fontsLoaded, fontError] = useFonts({
+    "Outfit-Bold": require("../../assets/Fonts/Outfit-Bold.ttf"),
+    "Outfit-Medium": require("../../assets/Fonts/Outfit-Medium.ttf"),
+    "Outfit-Regular": require("../../assets/Fonts/Outfit-Regular.ttf"),
+  });
   return (
     // <NavigationContainer>
     <Tab.Navigator
