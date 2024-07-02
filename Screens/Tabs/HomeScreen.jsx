@@ -8,6 +8,7 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import auth from "../../firebaseConfig";
 import { supabase } from "../../Utils/SupabaseConfig";
+import { Ionicons } from '@expo/vector-icons';
 
 // create a component
 const HomeScreen = () => {
@@ -48,19 +49,24 @@ const HomeScreen = () => {
               {userEmail[0].toUpperCase()}
             </Text>
           </View>
-          <View>
-            <Text
-              style={{ fontFamily: "Outfit-Bold" }}
-              className="text-gray-300"
-            >
-              Welcome,
-            </Text>
-            <Text
-              style={{ fontFamily: "Outfit-Medium" }}
-              className="text-white text-xl"
-            >
-              {getUsername(userEmail)}
-            </Text>
+          <View className="flex-row justify-between w-[72%] items-center">
+            <View>
+              <Text
+                style={{ fontFamily: "Outfit-Bold" }}
+                className="text-gray-300"
+              >
+                Welcome,
+              </Text>
+              <Text
+                style={{ fontFamily: "Outfit-Medium" }}
+                className="text-white text-xl"
+              >
+                {getUsername(userEmail)}
+              </Text>
+            </View>
+            <View className="">
+            <Ionicons name="notifications-sharp" size={24} color="white" />
+            </View>
           </View>
         </View>
         {/* <View className="bg-white h-[20%]">
@@ -74,7 +80,7 @@ const HomeScreen = () => {
       </View> */}
       <TouchableOpacity
         className="absolute bottom-5 bg-purple-500 rounded-full right-4 h-12 w-12 flex-row justify-center items-center"
-        onPress={() => navigation.navigate("AddNewCategory")}
+        onPress={() => navigation.navigate("Add New Category")}
       >
         <FontAwesome6 name="add" size={24} color="white" />
       </TouchableOpacity>

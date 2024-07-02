@@ -28,7 +28,13 @@ export default function App() {
         <stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
         <stack.Screen name="SignIn" component={SignIn} />
         <stack.Screen name="SignUp" component={SignUp} />
-        <stack.Screen name="AddNewCategory" component={AddNewCategory} />
+        <stack.Screen
+          name="Add New Category"
+          component={AddNewCategory}
+          options={{
+            headerShown: true,
+          }}
+        />
       </stack.Navigator>
     </NavigationContainer>
   );
