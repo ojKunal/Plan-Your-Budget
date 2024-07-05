@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, ScrollView, TouchableOpacity, RefreshControl } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import CategoryDatails from "../../Screens/CategoryDetails";
 
 const CategoryList = ({ categoryData = [] }) => {
   const navigation = useNavigation();
@@ -37,7 +38,7 @@ const CategoryList = ({ categoryData = [] }) => {
             <TouchableOpacity
               key={index}
               className="bg-gray-700 mb-3 h-20 flex-row items-center rounded-2xl"
-              onPress={() => navigation.navigate("YourScreenName", { item })}
+              onPress={() => navigation.navigate("CategoryDetails", { item })}
             >
               <View
                 className="flex-row justify-center items-center h-[80%] w-[20%] rounded-lg ml-2"
@@ -51,7 +52,7 @@ const CategoryList = ({ categoryData = [] }) => {
                     {item.name}
                   </Text>
                   <Text style={{ fontFamily: "Outfit-Regular" }} className="text-gray-400">
-                    0 items
+                    {item?.CategoryItems?.length} Item
                   </Text>
                 </View>
                 <View>

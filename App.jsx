@@ -9,6 +9,7 @@ import SignUp from "./Screens/Authentication/SignUp";
 import Layout from "./Screens/Tabs/Layout";
 import { initializeApp } from "firebase/app";
 import AddNewCategory from "./Screens/AddNewCategory";
+import CategoryDatails from "./Screens/CategoryDetails";
 
 const stack = createStackNavigator();
 
@@ -35,6 +36,7 @@ export default function App() {
             headerShown: true,
           }}
         />
+      <stack.Screen name="CategoryDetails" component={CategoryDatails} />
       </stack.Navigator>
     </NavigationContainer>
   );
