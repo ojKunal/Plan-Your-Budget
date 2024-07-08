@@ -10,10 +10,15 @@ import Layout from "./Screens/Tabs/Layout";
 import { initializeApp } from "firebase/app";
 import AddNewCategory from "./Screens/AddNewCategory";
 import CategoryDatails from "./Screens/CategoryDetails";
+import AddSubCategoryList from "./Screens/AddSubCategoryList";
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const stack = createStackNavigator();
 
 export default function App() {
+  const CustomHeaderTitle = () => (
+    <Text style={{  color: 'white', fontSize: 20,fontStyle:"italic" }}>Add items</Text>
+  );
   return (
     <NavigationContainer>
       <stack.Navigator
@@ -36,7 +41,28 @@ export default function App() {
             headerShown: true,
           }}
         />
-      <stack.Screen name="CategoryDetails" component={CategoryDatails} />
+        <stack.Screen name="CategoryDetails" component={CategoryDatails} />
+        <stack.Screen
+          name="AddSubCategoryList"
+          component={AddSubCategoryList}
+          options={({ navigation }) => ({
+            headerShown: true,
+            title: "Add items",
+            headerTitle: (props) => <CustomHeaderTitle {...props} />,
+            headerStyle: {
+              backgroundColor: "purple",
+            },
+            headerLeft: () => (
+              <Icon.Button
+                name="arrow-back"
+                size={25}
+                backgroundColor="purple"
+                color="white"
+                onPress={() => navigation.goBack()}
+              />
+            ),
+          })}
+        />
       </stack.Navigator>
     </NavigationContainer>
   );

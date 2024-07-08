@@ -17,8 +17,8 @@ const SubCategoryList = ({ CategoryItems = [] }) => {
       {CategoryItems?.length > 0 ? (
         CategoryItems.map((item, index) => (
           <>
-            <ScrollView>
-              <View key={index} className="flex-row h-16 items-center mt-2 ">
+            <ScrollView key={index}>
+              <View className="flex-row h-16 items-center mt-2 ">
                 <View className="h-full w-20 bg-red-800 rounded-xl">
                   <Image
                     className="h-full w-full"
@@ -37,7 +37,7 @@ const SubCategoryList = ({ CategoryItems = [] }) => {
                       className="text-gray-300 text-[13px]"
                       style={{ fontFamily: "Outfit-Regular" }}
                     >
-                     {item.url}
+                      {item.url}
                     </Text>
                   </View>
                   <View className="justify-end">
@@ -50,7 +50,9 @@ const SubCategoryList = ({ CategoryItems = [] }) => {
                   </View>
                 </View>
               </View>
-              <View className="w-full h-0.5 bg-gray-500 rounded-2xl mt-2"></View>
+              {CategoryItems.length - 1 != index && 
+                <View className="w-full h-0.5 bg-gray-500 rounded-2xl mt-2"></View>
+              }
             </ScrollView>
           </>
         ))

@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   Alert,
   BackHandler,
+  KeyboardAvoidingView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
@@ -78,7 +79,7 @@ const SignIn = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-900">
+    <KeyboardAvoidingView className="flex-1 bg-gray-900">
       <StatusBar style="light" backgroundColor="black" />
       <View className="flex-1 mt-20 px-6">
         <View className="flex-row justify-center">
@@ -141,7 +142,7 @@ const SignIn = () => {
           </Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 };
 

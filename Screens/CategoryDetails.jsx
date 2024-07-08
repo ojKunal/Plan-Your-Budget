@@ -17,31 +17,30 @@ const CategoryDetails = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { item } = route.params;
-  const [budgetCost,setBudgetCost] = useState(0);
-  const [budgetPercent,setBudgetPercent] = useState(0);
+  const [budgetCost, setBudgetCost] = useState(0);
+  const [budgetPercent, setBudgetPercent] = useState(0);
 
   useEffect(() => {
-    item&&CalculateBudgetPercent();
-  },[item])
-
+    item && CalculateBudgetPercent();
+  }, [item]);
 
   const CalculateBudgetPercent = () => {
-     let subBudget = 0;
-      item?.CategoryItems?.forEach(it => {
-         subBudget += it.cost;
-      })
-      setBudgetCost(subBudget);
-      const percent = (subBudget/item.assigned_budget) * 100;
-      setBudgetPercent(percent);
-      // console.log(subBudget);
-      // console.log(percent);
-  }
+    let subBudget = 0;
+    item?.CategoryItems?.forEach((it) => {
+      subBudget += it.cost;
+    });
+    setBudgetCost(subBudget);
+    const percent = (subBudget / item.assigned_budget) * 100;
+    setBudgetPercent(percent);
+    // console.log(subBudget);
+    // console.log(percent);
+  };
 
   return (
     <SafeAreaView className="h-full bg-gray-900">
       <StatusBar style="light" backgroundColor="black" />
       <View className="p-4 mt-6 bg-gray-700 rounded-b-2xl">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()} className="w-10">
           <Ionicons name="arrow-back-circle-sharp" size={40} color="white" />
         </TouchableOpacity>
         <View className="h-20 mt-1 flex-row items-center ">
@@ -63,24 +62,46 @@ const CategoryDetails = () => {
                 className="text-white"
                 style={{ fontFamily: "Outfit-Medium" }}
               >
-                {item?.CategoryItems?.length} Item 
+                {item?.CategoryItems?.length} Item
               </Text>
             </View>
-            <TouchableOpacity className="">
-              <FontAwesome6 name="trash-can" size={24} color="red" />
-            </TouchableOpacity>
+            <View className="flex-col justify-center items-center gap-3">
+              <TouchableOpacity
+                className="p-2 px-3 rounded-2xl"
+                style={{ backgroundColor: item.color }}
+                onPress={() => navigation.navigate("AddSubCategoryList")}
+              >
+                <Text style={{fontFamily:"Outfit-Bold "}}>Add Item</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <FontAwesome6 name="trash-can" size={22} color="red" />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
         <View className="flex-row justify-between mt-2">
-           <Text className="text-white text-sm" style={{fontFamily:"Outfit-Bold"}}>${budgetCost}</Text>
-           <Text className="text-white text-sm" style={{fontFamily:"Outfit-Bold"}}>Total Budget : ${item.assigned_budget}</Text>
+          <Text
+            className="text-white text-sm"
+            style={{ fontFamily: "Outfit-Bold" }}
+          >
+            ${budgetCost}
+          </Text>
+          <Text
+            className="text-white text-sm"
+            style={{ fontFamily: "Outfit-Bold" }}
+          >
+            Total Budget : ${item.assigned_budget}
+          </Text>
         </View>
         <View className="w-full h-6 bg-gray-300 rounded-2xl mt-1">
-             <View className="bg-red-400 h-full rounded-2xl" style={{width:budgetPercent+'%'}} ></View>
+          <View
+            className="bg-red-400 h-full rounded-2xl"
+            style={{ width: budgetPercent + "%" }}
+          ></View>
         </View>
       </View>
       <View className="p-3">
-      <SubCategoryList CategoryItems={item.CategoryItems}/>
+        <SubCategoryList CategoryItems={item.CategoryItems} />
       </View>
     </SafeAreaView>
   );
