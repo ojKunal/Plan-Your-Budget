@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 import auth from "../../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -27,36 +28,16 @@ const ProfileScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Profile section</Text>
-      <View style={styles.profileContainer}>
-        <Text style={styles.username}>Username: {username}</Text>
-        <Button title="Logout" onPress={handleLogout} />
-      </View>
+    <SafeAreaView className = "bg-gray-900 flex-1">
+    <View>
+      <Text>
+        Logout
+      </Text>
     </View>
+   </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-  },
-  profileContainer: {
-    padding: 20,
-    borderRadius: 10,
-    backgroundColor: "#f0f0f0",
-    alignItems: "center",
-  },
-  username: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-});
+
 
 export default ProfileScreen;

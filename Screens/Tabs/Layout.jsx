@@ -56,7 +56,19 @@ export default function Layout() {
         name="Profile"
         component={ProfileScreen}
         options={{
-          headerShown: false,
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: "purple",
+          },
+          headerLeft: () => (
+            <Icon.Button
+              name="arrow-back"
+              size={25}
+              backgroundColor="purple"
+              color="white"
+              onPress={() => navigation.goBack()}
+            />
+          ),
           tabBarIcon: ({ color }) => (
             <Feather name="user" size={24} color={color} />
           ),
